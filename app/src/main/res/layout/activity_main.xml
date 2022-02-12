@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <LinearLayout
+        android:id="@+id/ButonsLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true">
+        <ImageButton android:id="@+id/play"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/play"/>
+        <ImageButton android:id="@+id/pause"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/pause"/>
+        <ImageButton android:id="@+id/stop"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/stop"/>
+        <ImageButton android:id="@+id/logButton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/log"/>
+        <EditText    android:id="@+id/path"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="/data/video.3gp"/>
+    </LinearLayout>
+    <VideoView android:id="@+id/surfaceView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/ButonsLayout"/>
+    <ScrollView android:id="@+id/ScrollView"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true">
+        <TextView android:id="@+id/Log"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:text="Log:"/>
+    </ScrollView>
+</RelativeLayout>
