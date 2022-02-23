@@ -40,12 +40,15 @@ public class MainActivity extends AppCompatActivity implements
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
         editText = findViewById(R.id.path);
-        editText.setText("android.resource://"+
-                getPackageName() + "/raw/"+R.raw.calamardo);
+        editText.setText("https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4");
+        //editText.setText("android.resource://"+
+        //        getPackageName() + "/raw/"+R.raw.calamardo);
         logTextView = findViewById(R.id.Log);
         ibPlay = findViewById(R.id.play);
+        ibPlay.setEnabled(false);
         ibPlay.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                ibPlay.setEnabled(false);
                 if (mediaPlayer != null) {
                     if (pause) {
                         pause = false;
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (mediaPlayer != null && !stop && !pause) {
                     pause = true;
                     mediaPlayer.pause();
+                    ibPlay.setEnabled(true);
                 }
             }
         });
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (mediaPlayer != null && !pause && !stop) {
                     pause = false;
                     stop = true;
+                    ibPlay.setEnabled(true);
                     mediaPlayer.stop();
                     mediaPlayer.reset();
                     mediaPlayer.release();
@@ -137,12 +142,16 @@ public class MainActivity extends AppCompatActivity implements
             stop = false;
             path = editText.getText().toString();
             mediaPlayer = new MediaPlayer();
-            mediaPlayer.setDataSource(this,
-                    Uri.parse("android.resource://"+
-                            getPackageName() + "/raw/"+R.raw.calamardo));
+            //vídeo en streaming
+            mediaPlayer.setDataSource("https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4");
+
+            //vídeo almacenado en la carpeta raw
+            //mediaPlayer.setDataSource(this,
+            //        Uri.parse("android.resource://"+
+            //                getPackageName() + "/raw/"+R.raw.calamardo));
             mediaPlayer.setDisplay(surfaceHolder);
-            mediaPlayer.prepare();
-            // mMediaPlayer.prepareAsync(); Para streaming
+            //mediaPlayer.prepare();
+            mediaPlayer.prepareAsync(); //Para streaming
             mediaPlayer.setOnBufferingUpdateListener(this);
             mediaPlayer.setOnCompletionListener(this);
             mediaPlayer.setOnPreparedListener(this);
